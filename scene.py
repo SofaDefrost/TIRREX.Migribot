@@ -3,7 +3,7 @@
 import Sofa.Core
 from splib3.animation import AnimationManager
 from params import *
-from math import sin, cos, pi
+from math import sin, cos, pi, atan
 
 
 class BeamController(Sofa.Core.Controller):
@@ -113,6 +113,12 @@ def createScene(rootNode):
     rootNode.addObject('VisualStyle', displayFlags='showVisualModels')
     rootNode.addObject('FreeMotionAnimationLoop')
     rootNode.addObject('QPInverseProblemSolver')
+
+    ########################################
+    # Camera                               #
+    ########################################
+    rootNode.addObject("OglViewport", swapMainView=True, screenSize=[750, 450], drawCamera=True,
+                       cameraRigid=[0, -5, 4, sin(pi/4), 0, 0, cos(pi/4)], fovy=46.79)
 
     ########################################
     # Robot model                          #
